@@ -1,23 +1,63 @@
-import logo from './logo.svg';
+
 import './App.css';
+import TimeMarker from './TimeMarker';
+import datas from './input.json'
+
+import PlageHoraire from './PlageHoraire';
 
 function App() {
+
+  datas.forEach(element => {
+    var minutes = element.start.slice(3, 5);
+    element.margin = "margin-".concat(minutes);
+    const horaireStart = element.start.slice(0, 2);
+    element.horaireStart = horaireStart.concat('h');
+  });
+
+
+  const timeMarker = [
+    "9 AM",
+    "10 AM",
+    "11 AM",
+    "12 AM",
+    "1 PM",
+    "2 PM",
+    "3 PM",
+    "4 PM",
+    "5 PM",
+    "6 PM",
+    "7 PM",
+    "8 PM",
+    "9 PM"
+  ];
+
+  const plageHoraire = [
+    "09h",
+    "10h",
+    "11h",
+    "12h",
+    "13h",
+    "14h",
+    "15h",
+    "16h",
+    "17h",
+    "18h",
+    "19h",
+    "20h"
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="timeline">
+        {timeMarker.map((times) =>
+          <TimeMarker times={times} />)}
+      </div>
+
+      <div className='calendar'>
+        {plageHoraire.map((horaires) =>
+          <PlageHoraire horaires={horaires} datas={datas} />
+        )}
+      </div>
     </div>
   );
 }
