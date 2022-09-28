@@ -12,9 +12,23 @@ function App() {
     element.margin = "margin-".concat(minutes);
     const horaireStart = element.start.slice(0, 2);
     element.horaireStart = horaireStart.concat('h');
+
+    // convertir la durée de l'évenement en heure
+    var durationEnNombre = parseInt(element.duration);
+    let convertDurationEnHeure = (n) => `${n / 60 ^ 0}:` + n % 60
+
+    // Calcul de l'heure de fin de l'évenement
+    var heureDebutEnNombre = parseInt(horaireStart);
+    var minutesDebutEnNombre = parseInt(minutes);
+    var heureDebutEnMinutes = heureDebutEnNombre * 60 + minutesDebutEnNombre;
+    var heureFinEnMinutes = heureDebutEnMinutes + durationEnNombre;
+
+    element.debutEnMinutes = heureDebutEnMinutes;
+    element.FinEnMinutes = heureFinEnMinutes;
+
   });
 
-
+  console.log(datas)
   const timeMarker = [
     "9 AM",
     "10 AM",

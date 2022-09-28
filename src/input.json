@@ -50,15 +50,16 @@
         "duration": 20
     },
     {
-        "id": 1,
-        "start": "17:00",
-        "duration": 60
-    },
-    {
         "id": 2,
         "start": "17:00",
         "duration": 120
     },
+    {
+        "id": 1,
+        "start": "17:00",
+        "duration": 60
+    },
+
     {
         "id": 8,
         "start": "17:00",
