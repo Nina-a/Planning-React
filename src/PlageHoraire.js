@@ -32,20 +32,31 @@ function PlageHoraire(props) {
         return a.debut - b.debut;
     })
 
-    // Détemine si les évents sont sur la m$eme plage horaire
-    let isNotTheSamePlageHoraire = true;
-    let isTheSamePlageHoraire = true;
+    // Détemine si les évents sont sur la même plage horaire
+
+    let isNotTheSamePlageHoraire = false;
+    let isTheSamePlageHoraire = false;
 
     for (let index = 0; index < horaires.length - 1; index++) {
         if (horaires[index].fin < horaires[index + 1].debut) {
             isNotTheSamePlageHoraire = true;
         } else {
-            isTheSamePlageHoraire = false;
+            isTheSamePlageHoraire = true;
+        }
+    }
+
+    if (isNotTheSamePlageHoraire === false) {
+        isNotTheSamePlageHoraire = false
+    } else {
+        if (isTheSamePlageHoraire === true) {
+            isNotTheSamePlageHoraire = false;
+        } else {
+            isNotTheSamePlageHoraire = true;
         }
     }
 
     // pour avoir le bon truc de la plage horaire
-    isNotTheSamePlageHoraire = isNotTheSamePlageHoraire && isTheSamePlageHoraire;
+    //isNotTheSamePlageHoraire = isNotTheSamePlageHoraire && isTheSamePlageHoraire;
 
     // fait le calcul des margins
     if (isNotTheSamePlageHoraire && nombreEvent > 1) {
