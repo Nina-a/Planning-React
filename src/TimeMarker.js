@@ -1,4 +1,5 @@
-import './TimeMarker.css'
+import './TimeMarker.css';
+import PropTypes from 'prop-types';
 
 
 function TimeMarker(props) {
@@ -8,6 +9,10 @@ function TimeMarker(props) {
     return (
         <div id={time} className="time-marker"> {time}</div>
     )
+}
+
+TimeMarker.propTypes = {
+    time: PropTypes.string,
 }
 
 export default TimeMarker;

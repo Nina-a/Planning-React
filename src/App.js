@@ -13,9 +13,7 @@ function App() {
     const horaireStart = element.start.slice(0, 2);
     element.horaireStart = horaireStart.concat('h');
 
-    // convertir la durée de l'évenement en heure
     var durationEnNombre = parseInt(element.duration);
-    let convertDurationEnHeure = (n) => `${n / 60 ^ 0}:` + n % 60
 
     // Calcul de l'heure de fin de l'évenement
     var heureDebutEnNombre = parseInt(horaireStart);
@@ -23,12 +21,12 @@ function App() {
     var heureDebutEnMinutes = heureDebutEnNombre * 60 + minutesDebutEnNombre;
     var heureFinEnMinutes = heureDebutEnMinutes + durationEnNombre;
 
+    var horaireEnd = Math.trunc(heureFinEnMinutes / 60);
     element.debutEnMinutes = heureDebutEnMinutes;
     element.FinEnMinutes = heureFinEnMinutes;
-
+    element.horaireEnd = horaireEnd.toString().concat('h');
   });
 
-  console.log(datas)
   const timeMarker = [
     "9 AM",
     "10 AM",
@@ -64,12 +62,12 @@ function App() {
     <div className="App">
       <div className="timeline">
         {timeMarker.map((times) =>
-          <TimeMarker times={times} />)}
+          <TimeMarker key={times} times={times} />)}
       </div>
 
       <div className='calendar'>
         {plageHoraire.map((horaires) =>
-          <PlageHoraire horaires={horaires} datas={datas} />
+          <PlageHoraire key={horaires} horaires={horaires} datas={datas} />
         )}
       </div>
     </div>

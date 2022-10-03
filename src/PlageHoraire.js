@@ -1,14 +1,14 @@
-/* eslint-disable no-unused-expressions */
+
 import './PlageHoraire.css'
 import Event from './Event';
+import PropTypes from 'prop-types';
 
 function PlageHoraire(props) {
     const horaire = props.horaires
 
     const data = props.datas;
 
-    var nombreEvent = 0;
-    //console.log(data);
+    var nombreEventDebut = 0;
 
     var horaires = [];
     var i = 0;
@@ -16,7 +16,7 @@ function PlageHoraire(props) {
         const element = data[index];
 
         if (element.horaireStart === horaire) {
-            nombreEvent++;
+            nombreEventDebut++;
             horaires[i] = {
                 debut: data[index].debutEnMinutes,
                 fin: data[index].FinEnMinutes,
@@ -32,8 +32,7 @@ function PlageHoraire(props) {
         return a.debut - b.debut;
     })
 
-    // Détemine si les évents sont sur la même plage horaire
-
+    // Détemine si les évents sont sur la même plage horaire dans une même div
     let isNotTheSamePlageHoraire = false;
     let isTheSamePlageHoraire = false;
 
@@ -55,18 +54,15 @@ function PlageHoraire(props) {
         }
     }
 
-    // pour avoir le bon truc de la plage horaire
-    //isNotTheSamePlageHoraire = isNotTheSamePlageHoraire && isTheSamePlageHoraire;
-
-    // fait le calcul des margins
-    if (isNotTheSamePlageHoraire && nombreEvent > 1) {
+    // fait le calcul des marginsnombreEvent
+    if (isNotTheSamePlageHoraire && nombreEventDebut > 1) {
         for (let index = 1; index < horaires.length; index++) {
+
             var minutes = horaires[index].element.start.slice(3, 5);
 
             horaires[index].element.margin = "margin-".concat(parseInt(minutes) - parseInt(horaires[index - 1].duration))
         }
     }
-
 
     return (
         <div id={horaire} className="plageHoraire" style={{
@@ -75,12 +71,17 @@ function PlageHoraire(props) {
 
             {horaires.map((event) => {
                 if (event.element.horaireStart === horaire)
-                    return <Event element={event.element} />
+                { return <Event key={event.element.id} element={event.element} /> }
             }
             )}
 
         </div>
     )
+}
+
+PlageHoraire.propTypes = {
+    horaires: PropTypes.string.isRequired,
+    datas: PropTypes.array.isRequired,
 }
 
 export default PlageHoraire;
