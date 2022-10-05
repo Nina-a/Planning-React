@@ -1,11 +1,11 @@
-.event{
+  .event{
     width: 100%;
     border: 1px solid black;
     background-color: blueviolet;
   }
 
   /* Taille des events */
-.minutes-10{
+  .minutes-10{
     height: 10px;
   }
   

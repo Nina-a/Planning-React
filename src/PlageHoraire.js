@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 
 import './PlageHoraire.css'
 import Event from './Event';
@@ -65,7 +66,7 @@ function PlageHoraire(props) {
     }
 
     return (
-        <div id={horaire} className="plageHoraire" style={{
+        <div data-testid={horaire} id={horaire} className="plageHoraire" style={{
             flexWrap: isNotTheSamePlageHoraire ? 'wrap' : ""
         }} >
 

@@ -7,7 +7,7 @@ function TimeMarker(props) {
     const time = props.times
 
     return (
-        <div id={time} className="time-marker"> {time}</div>
+        <div data-testid={time} id={time} className="time-marker"> {time}</div>
     )
 }
 

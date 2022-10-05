@@ -7,7 +7,7 @@ function Event(props) {
     const element = props.element;
 
     return (
-        <div id={element.id} className={`event ${element.margin} minutes-${element.duration}`}>{element.id}</div>
+        <div data-testid={element.id} id={element.id} className={`event ${element.margin} minutes-${element.duration}`}>{element.id}</div>
     )
 };
 

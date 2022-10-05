@@ -142,3 +142,9 @@ The configuration above meets all constraints. Be careful, something like below 
 
 Events 2 et 3 satisfy both constraints. Events 4 and 5 do not.
 
+## How to start project
+
+* Clone the project.
+* Do yarn ( to install yarn).
+* Do yarn start to start the project.
+  
