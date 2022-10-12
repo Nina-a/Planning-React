@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 
-import './PlageHoraire.css'
-import Event from './Event';
+import './plageHoraire.css'
+import Event from './event';
 import PropTypes from 'prop-types';
 
 function PlageHoraire(props) {

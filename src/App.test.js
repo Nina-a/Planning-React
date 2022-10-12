@@ -1,5 +1,5 @@
 import { render, act, screen } from '@testing-library/react';
-import App from './App';
+import App from './app';
 
 test('First test', () => {
   act(() => {

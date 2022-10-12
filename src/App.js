@@ -1,9 +1,9 @@
 
-import './App.css';
-import TimeMarker from './TimeMarker';
+import './app.css';
+import TimeMarker from './timeMarker';
 import datas from './input.json'
 
-import PlageHoraire from './PlageHoraire';
+import PlageHoraire from './plageHoraire';
 
 function App() {
 

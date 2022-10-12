@@ -1,4 +1,4 @@
-import './Event.css'
+import './event.css'
 import PropTypes from 'prop-types';
 
 
