@@ -8,20 +8,20 @@ import PlageHoraire from './PlageHoraire';
 function App() {
 
   datas.forEach(element => {
-    var minutes = element.start.slice(3, 5);
+    const minutes = element.start.slice(3, 5);
     element.margin = "margin-".concat(minutes);
     const horaireStart = element.start.slice(0, 2);
     element.horaireStart = horaireStart.concat('h');
 
-    var durationEnNombre = parseInt(element.duration);
+    const durationEnNombre = parseInt(element.duration);
 
     // Calcul de l'heure de fin de l'évenement
-    var heureDebutEnNombre = parseInt(horaireStart);
-    var minutesDebutEnNombre = parseInt(minutes);
-    var heureDebutEnMinutes = heureDebutEnNombre * 60 + minutesDebutEnNombre;
-    var heureFinEnMinutes = heureDebutEnMinutes + durationEnNombre;
+    const heureDebutEnNombre = parseInt(horaireStart);
+    const minutesDebutEnNombre = parseInt(minutes);
+    const heureDebutEnMinutes = heureDebutEnNombre * 60 + minutesDebutEnNombre;
+    const heureFinEnMinutes = heureDebutEnMinutes + durationEnNombre;
 
-    var horaireEnd = Math.trunc(heureFinEnMinutes / 60);
+    const horaireEnd = Math.trunc(heureFinEnMinutes / 60);
     element.debutEnMinutes = heureDebutEnMinutes;
     element.FinEnMinutes = heureFinEnMinutes;
     element.horaireEnd = horaireEnd.toString().concat('h');

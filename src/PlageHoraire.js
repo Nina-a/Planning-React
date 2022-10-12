@@ -9,10 +9,10 @@ function PlageHoraire(props) {
 
     const data = props.datas;
 
-    var nombreEventDebut = 0;
+    let nombreEventDebut = 0;
 
-    var horaires = [];
-    var i = 0;
+    let horaires = [];
+    let i = 0;
     for (let index = 0; index < data.length; index++) {
         const element = data[index];
 
@@ -59,7 +59,7 @@ function PlageHoraire(props) {
     if (isNotTheSamePlageHoraire && nombreEventDebut > 1) {
         for (let index = 1; index < horaires.length; index++) {
 
-            var minutes = horaires[index].element.start.slice(3, 5);
+            const minutes = horaires[index].element.start.slice(3, 5);
 
             horaires[index].element.margin = "margin-".concat(parseInt(minutes) - parseInt(horaires[index - 1].duration))
         }
