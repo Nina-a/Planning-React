@@ -1,26 +1,26 @@
 /* eslint-disable array-callback-return */
 
-import './plageHoraire.css'
+import './timeslot.css'
 import Event from './event';
 import PropTypes from 'prop-types';
 
-function PlageHoraire(props) {
+function TimeSlot(props) {
     const horaire = props.horaires
 
     const data = props.datas;
 
-    let nombreEventDebut = 0;
+    let numberOfEventWithSameStart = 0;
 
     let horaires = [];
     let i = 0;
     for (let index = 0; index < data.length; index++) {
         const element = data[index];
 
-        if (element.horaireStart === horaire) {
-            nombreEventDebut++;
+        if (element.startTime === horaire) {
+            numberOfEventWithSameStart++;
             horaires[i] = {
-                debut: data[index].debutEnMinutes,
-                fin: data[index].FinEnMinutes,
+                debut: data[index].startInMinutes,
+                fin: data[index].endInMinutes,
                 margin: data[index].margin,
                 duration: data[index].duration,
                 element: element
@@ -33,7 +33,7 @@ function PlageHoraire(props) {
         return a.debut - b.debut;
     })
 
-    // Détemine si les évents sont sur la même plage horaire dans une même div
+    // Détermine if events are on the same timeslot
     let isNotTheSamePlageHoraire = false;
     let isTheSamePlageHoraire = false;
 
@@ -55,8 +55,8 @@ function PlageHoraire(props) {
         }
     }
 
-    // fait le calcul des marginsnombreEvent
-    if (isNotTheSamePlageHoraire && nombreEventDebut > 1) {
+    // calculated of margin if event are on the same slot but one after the other
+    if (isNotTheSamePlageHoraire && numberOfEventWithSameStart > 1) {
         for (let index = 1; index < horaires.length; index++) {
 
             const minutes = horaires[index].element.start.slice(3, 5);
@@ -66,13 +66,12 @@ function PlageHoraire(props) {
     }
 
     return (
-        <div data-testid={horaire} id={horaire} className="plageHoraire" style={{
+        <div data-testid={horaire} id={horaire} className="tiemeSlot" style={{
             flexWrap: isNotTheSamePlageHoraire ? 'wrap' : ""
         }} >
 
             {horaires.map((event) => {
-                if (event.element.horaireStart === horaire)
-                { return <Event key={event.element.id} element={event.element} /> }
+                if (event.element.startTime === horaire) { return <Event key={event.element.id} element={event.element} /> }
             }
             )}
 
@@ -80,9 +79,9 @@ function PlageHoraire(props) {
     )
 }
 
-PlageHoraire.propTypes = {
+TimeSlot.propTypes = {
     horaires: PropTypes.string.isRequired,
     datas: PropTypes.array.isRequired,
 }
 
-export default PlageHoraire;
+export default TimeSlot;

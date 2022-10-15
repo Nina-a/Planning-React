@@ -1,4 +1,4 @@
-import './timeMarker.css';
+import './timemarker.css';
 import PropTypes from 'prop-types';
 
 
