@@ -1,5 +1,5 @@
 import { render, act, screen } from '@testing-library/react';
-import TimeSlot from './timeSlot';
+import TimeSlot from '../components/timeslot';
 
 test('Component plagehoraire "09h" had the good numbers of children', () => {
     act(() => {

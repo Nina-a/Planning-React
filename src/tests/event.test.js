@@ -1,5 +1,5 @@
 import { render, act, screen } from '@testing-library/react';
-import Event from './Event';
+import Event from '../components/event';
 
 test('Component event is working', () => {
     act(() => {
