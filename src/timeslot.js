@@ -1,82 +1,85 @@
 /* eslint-disable array-callback-return */
-
+import React from 'react';
 import './timeslot.css'
 import Event from './event';
 import PropTypes from 'prop-types';
 
-function TimeSlot(props) {
-    const horaire = props.horaires
+class TimeSlot extends React.Component {
 
-    const data = props.datas;
+    render() {
+        const horaire = this.props.horaires
 
-    let numberOfEventWithSameStart = 0;
+        const data = this.props.datas;
 
-    let horaires = [];
-    let i = 0;
-    for (let index = 0; index < data.length; index++) {
-        const element = data[index];
+        let numberOfEventWithSameStart = 0;
 
-        if (element.startTime === horaire) {
-            numberOfEventWithSameStart++;
-            horaires[i] = {
-                debut: data[index].startInMinutes,
-                fin: data[index].endInMinutes,
-                margin: data[index].margin,
-                duration: data[index].duration,
-                element: element
+        let horaires = [];
+        let i = 0;
+        for (let index = 0; index < data.length; index++) {
+            const element = data[index];
+
+            if (element.startTime === horaire) {
+                numberOfEventWithSameStart++;
+                horaires[i] = {
+                    debut: data[index].startInMinutes,
+                    fin: data[index].endInMinutes,
+                    margin: data[index].margin,
+                    duration: data[index].duration,
+                    element: element
+                }
+                i++;
             }
-            i++;
         }
-    }
 
-    horaires.sort(function (a, b) {
-        return a.debut - b.debut;
-    })
+        horaires.sort(function (a, b) {
+            return a.debut - b.debut;
+        })
 
-    // Détermine if events are on the same timeslot
-    let isNotTheSamePlageHoraire = false;
-    let isTheSamePlageHoraire = false;
+        // Détermine if events are on the same timeslot
+        let isNotTheSamePlageHoraire = false;
+        let isTheSamePlageHoraire = false;
 
-    for (let index = 0; index < horaires.length - 1; index++) {
-        if (horaires[index].fin < horaires[index + 1].debut) {
-            isNotTheSamePlageHoraire = true;
-        } else {
-            isTheSamePlageHoraire = true;
-        }
-    }
-
-    if (isNotTheSamePlageHoraire === false) {
-        isNotTheSamePlageHoraire = false
-    } else {
-        if (isTheSamePlageHoraire === true) {
-            isNotTheSamePlageHoraire = false;
-        } else {
-            isNotTheSamePlageHoraire = true;
-        }
-    }
-
-    // calculated of margin if event are on the same slot but one after the other
-    if (isNotTheSamePlageHoraire && numberOfEventWithSameStart > 1) {
-        for (let index = 1; index < horaires.length; index++) {
-
-            const minutes = horaires[index].element.start.slice(3, 5);
-
-            horaires[index].element.margin = "margin-".concat(parseInt(minutes) - parseInt(horaires[index - 1].duration))
-        }
-    }
-
-    return (
-        <div data-testid={horaire} id={horaire} className="tiemeSlot" style={{
-            flexWrap: isNotTheSamePlageHoraire ? 'wrap' : ""
-        }} >
-
-            {horaires.map((event) => {
-                if (event.element.startTime === horaire) { return <Event key={event.element.id} element={event.element} /> }
+        for (let index = 0; index < horaires.length - 1; index++) {
+            if (horaires[index].fin < horaires[index + 1].debut) {
+                isNotTheSamePlageHoraire = true;
+            } else {
+                isTheSamePlageHoraire = true;
             }
-            )}
+        }
 
-        </div>
-    )
+        if (isNotTheSamePlageHoraire === false) {
+            isNotTheSamePlageHoraire = false
+        } else {
+            if (isTheSamePlageHoraire === true) {
+                isNotTheSamePlageHoraire = false;
+            } else {
+                isNotTheSamePlageHoraire = true;
+            }
+        }
+
+        // calculated of margin if event are on the same slot but one after the other
+        if (isNotTheSamePlageHoraire && numberOfEventWithSameStart > 1) {
+            for (let index = 1; index < horaires.length; index++) {
+
+                const minutes = horaires[index].element.start.slice(3, 5);
+
+                horaires[index].element.margin = "margin-".concat(parseInt(minutes) - parseInt(horaires[index - 1].duration))
+            }
+        }
+
+        return (
+            <div data-testid={horaire} id={horaire} className="tiemeSlot" style={{
+                flexWrap: isNotTheSamePlageHoraire ? 'wrap' : ""
+            }} >
+
+                {horaires.map((event) => {
+                    if (event.element.startTime === horaire) { return <Event key={event.element.id} element={event.element} /> }
+                }
+                )}
+
+            </div>
+        )
+    }
 }
 
 TimeSlot.propTypes = {
