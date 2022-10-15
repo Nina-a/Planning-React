@@ -1,14 +1,23 @@
+import React from 'react';
+
 import './event.css'
 import PropTypes from 'prop-types';
 
 
-function Event(props) {
+class Event extends React.Component {
 
-    const element = props.element;
+    render() {
+        let element = this.props.element;
 
-    return (
-        <div data-testid={element.id} id={element.id} className={`event ${element.margin} minutes-${element.duration}`}>{element.id}</div>
-    )
+        return (
+            <div
+                data-testid={element.id}
+                id={element.id}
+                className={`event ${element.margin} minutes-${element.duration}`}>
+                {element.id}
+            </div>
+        )
+    }
 };
 
 Event.propTypes = {
