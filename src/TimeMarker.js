@@ -1,15 +1,18 @@
+import React from 'react';
 import './timemarker.css';
 import PropTypes from 'prop-types';
 
 
-function TimeMarker(props) {
+class TimeMarker extends React.Component {
 
-    const time = props.times
+    render() {
+        const time = this.props.times
 
     return (
         <div data-testid={time} id={time} className="time-marker"> {time}</div>
     )
-}
+    }
+};
 
 TimeMarker.propTypes = {
     time: PropTypes.string,
