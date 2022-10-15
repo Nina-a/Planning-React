@@ -1,12 +1,14 @@
 
+import React from 'react';
 import './app.css';
 import TimeMarker from './timemarker';
 import datas from './input.json'
 
 import TimeSlot from './timeslot';
 
-function App() {
+class App extends React.Component {
 
+  render() {
   datas.forEach(element => {
     const minutes = element.start.slice(3, 5);
     element.margin = "margin-".concat(minutes);
@@ -72,6 +74,7 @@ function App() {
       </div>
     </div>
   );
+  }
 }
 
 export default App;
