@@ -11,7 +11,7 @@ export const timeMarker = [
   "6 PM",
   "7 PM",
   "8 PM",
-  "9 PM"
+  "9 PM",
 ];
 
 export const timeSlots = [
@@ -26,6 +26,5 @@ export const timeSlots = [
   "17h",
   "18h",
   "19h",
-  "20h"
+  "20h",
 ];
-
